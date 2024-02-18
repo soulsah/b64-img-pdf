@@ -23,17 +23,18 @@ app.post('/', async (req, res) => {
       format: 'png',
     };
 
-    // Converter o PDF para imagens
+    // Converte PDF em imagem
     const images = await fromBase64(pdf, pdf2picOptions).bulk(-1);
 
-    // Criar o objeto para a configuração do PDF
+    // Cria objeto do PDF
     const pdfConfig = {
-      output: './output.pdf', // Caminho para o arquivo de saída PDF
+      output: './pdfOriginal.pdf',
     };
 
-    // Array dinâmico de páginas
+    // Array das imagens do PDF original
     const pages = images.map((image, index) => `./untitled.${index + 1}.png`);
 
+    // Converte as imagens do PDF original em PDF
     imgToPDF(pages, imgToPDF.sizes.A4)
       .pipe(fs.createWriteStream(pdfConfig.output));
 
