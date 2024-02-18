@@ -1,0 +1,1 @@
+Precisa instalar o GraphicsMagick e o Ghostscript
